@@ -1,0 +1,5 @@
+Package: firmware-okreader
+Version: 1.0-1
+Maintainer: Cosmin Gorgovan <okreader@linux-geek.org>
+Architecture: armhf
+Description: firmware blobs for okreader

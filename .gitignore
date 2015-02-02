@@ -1,1 +1,5 @@
 rootfs
+src/backports*
+src/*.deb
+src/firmware-okreader/lib/
+src/linux-okreader-modules/lib/
