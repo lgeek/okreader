@@ -101,7 +101,7 @@ clean_up_rootfs() {
 
 build_rootfs() {
   debootstrap --arch=armhf --variant=minbase \
-  --include=net-tools,wireless-tools,wpasupplicant,kmod,udev,openssh-server,iputils-ping,ifupdown,vim-tiny \
+  --include=net-tools,wireless-tools,wpasupplicant,kmod,udev,openssh-server,iputils-ping,ifupdown,vim-tiny,dhcpcd \
   wheezy ./rootfs http://http.debian.net/debian/
 
   if [ $? -ne 0 ] ; then
