@@ -1,0 +1,5 @@
+Package: koreader
+Version: 2014.11-3
+Maintainer: Cosmin Gorgovan <okreader@linux-geek.org>
+Architecture: armhf
+Description: An ebook viewer application.

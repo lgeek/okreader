@@ -23,7 +23,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-available_targets=("linux-image" "linux-modules" "firmware-okreader")
+available_targets=("linux-image" "linux-modules" "firmware-okreader" "koreader")
 
 print_usage() {
   echo "Usage: build.sh [TARGET]"
@@ -104,6 +104,22 @@ compile_firmware_okreader() {
   cd ..
 }
 
+compile_koreader() {
+  cd src/koreader
+  rm *.tar.gz
+  rm *.zip
+  make fetchthirdparty
+  make TARGET=kobo koboupdate
+  cd ..
+  cd koreader-pkg
+  rm -R opt
+  mkdir opt
+  cd opt
+  tar xf ../../koreader/koreader-kobo-arm-linux-gnueabihf*.tar.gz
+  cd ../../
+  dpkg-deb -b koreader-pkg .
+}
+
 targets=()
 parse_args $@
 
@@ -117,6 +133,9 @@ for target in ${targets[*]}; do
       ;;
     firmware-okreader)
       compile_firmware_okreader
+      ;;
+    koreader)
+      compile_koreader
       ;;
   esac
 done

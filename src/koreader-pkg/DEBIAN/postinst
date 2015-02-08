@@ -1,0 +1,3 @@
+#!/bin/sh
+
+update-rc.d koreader defaults > /dev/null

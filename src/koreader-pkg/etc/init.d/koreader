@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          koreader
+# Required-Start:
+# Required-Stop:
+# Should-Start:
+# Default-Start:     1 2 3 4 5
+# Default-Stop:
+# Short-Description: Start koreader.
+# Description:       Start koreader.
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+do_start () {
+	cd /opt/koreader
+	./luajit ./reader.lua /mnt/onboard &
+}
+
+case "$1" in
+  start|"")
+	do_start
+	;;
+	stop)
+	# No-op
+	;;
+  restart|reload|force-reload|status)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+  *)
+	echo "Usage: koreader [start|stop]" >&2
+	exit 3
+	;;
+esac
+
