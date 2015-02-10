@@ -66,6 +66,10 @@ config_rootfs() {
   echo "okreader" > ./rootfs/etc/hostname
   echo -e "127.0.0.1 localhost okreader\n" > ./rootfs/etc/hosts
   echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4\n" > ./rootfs/etc/resolv.conf
+
+  # replace the framebuffer terminals with an uart terminal
+  mv ./rootfs/etc/inittab ./rootfs/etc/inittab.default
+  sed -r 's/^[0-9]+:[0-9]+:respawn/# &/' ./rootfs/etc/inittab.default > rootfs/etc/inittab
   echo -e "\nT0:23:respawn:/sbin/getty -L ttymxc0 115200 vt100\n" >> ./rootfs/etc/inittab
   
   mkdir ./rootfs/mnt/onboard
