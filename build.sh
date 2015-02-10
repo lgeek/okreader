@@ -106,12 +106,21 @@ compile_firmware_okreader() {
 
 compile_koreader() {
   cd src/koreader
-  rm *.tar.gz
-  rm *.zip
+
+  # Remove previous builds
+  rm *.tar.gz *.zip
+
   make fetchthirdparty
+
+  # Remove -m32 cflag
+  patch -p1 < ../koreader_base_arm.patch
+
   make TARGET=kobo koboupdate
-  cd ..
-  cd koreader-pkg
+
+  # Reverse the patch so that koreader-base can be cleanly updated in the future
+  patch -R -p1 < ../koreader_base_arm.patch
+
+  cd ../koreader-pkg
   rm -R opt
   mkdir opt
   cd opt

@@ -1,0 +1,11 @@
+--- a/base/Makefile
++++ b/base/Makefile
+@@ -196,7 +196,7 @@ else
+ 	# Build its HOST/TARGET_CFLAGS based on CFLAGS, so we need
+ 	# a neutral CFLAGS without arch
+ 	$(MAKE) -j$(PROCESSORS) -C $(LUA_DIR) \
+-		CC="$(HOSTCC)" HOST_CC="$(HOSTCC) -m32" \
++		CC="$(HOSTCC)" HOST_CC="$(HOSTCC)" \
+ 		CFLAGS="$(BASE_CFLAGS)" HOST_CFLAGS="$(HOSTCFLAGS)" \
+ 		$(if $(WIN32),LDFLAGS="$(LDFLAGS)",) \
+ 		$(if $(WIN32),TARGET_SYS=Windows,) \
