@@ -124,7 +124,7 @@ compile_koreader() {
   rm -R opt
   mkdir opt
   cd opt
-  tar xf ../../koreader/koreader-kobo-arm-linux-gnueabihf*.tar.gz
+  tar xf ../../koreader/koreader-kobo-arm-linux-gnueabihf*.targz
   cd ../../
   dpkg-deb -b koreader-pkg .
 }
