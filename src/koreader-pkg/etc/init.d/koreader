@@ -13,8 +13,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 do_start () {
-	cd /opt/koreader
-	./luajit ./reader.lua /mnt/onboard &
+	/opt/koreader/okreader.sh &
 }
 
 case "$1" in
