@@ -23,7 +23,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-available_targets=("linux-image" "linux-modules" "firmware-okreader" "koreader")
+available_targets=("u-boot" "linux-image" "linux-modules" "firmware-okreader" "koreader")
 
 print_usage() {
   echo "Usage: build.sh [TARGET]"
@@ -65,6 +65,13 @@ parse_args() {
       fi
     fi
   done
+}
+
+compile_uboot() {
+  cd src/u-boot
+  make mx50_rdp_config
+  make -j$(($(nproc)+1))
+  cd ../../
 }
 
 compile_linux_image() {
@@ -142,6 +149,9 @@ parse_args $@
 
 for target in ${targets[*]}; do
   case $target in
+    u-boot)
+      compile_uboot
+      ;;
     linux-image)
       compile_linux_image
       ;;

@@ -4,3 +4,6 @@
 [submodule "src/koreader"]
 	path = src/koreader
 	url = git@github.com:lgeek/koreader.git
+[submodule "src/u-boot"]
+	path = src/u-boot
+	url = git@github.com:lgeek/u-boot-okreader.git
