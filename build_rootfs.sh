@@ -73,16 +73,10 @@ config_rootfs() {
   echo -e "\nT0:23:respawn:/sbin/getty -L ttymxc0 115200 vt100\n" >> ./rootfs/etc/inittab
   
   mkdir ./rootfs/mnt/onboard
-  echo -e "/dev/mmcblk0p3 /mnt/onboard vfat noatime 0 1\n" > ./rootfs/etc/fstab
-  echo -e "tmpfs /tmp tmpfs defaults 0 0\n" >> ./rootfs/etc/fstab
-  
-  # Prevents documentation from being installed to persistent storage
-  echo -e "tmpfs /usr/share/man tmpfs defaults 0 0\n" >> ./rootfs/etc/fstab
-  echo -e "tmpfs /usr/share/info tmpfs defaults 0 0\n" >> ./rootfs/etc/fstab
-  echo -e "tmpfs /usr/share/doc tmpfs defaults 0 0\n" >> ./rootfs/etc/fstab
-  
-  # Don't store logs (to save space & reduce flash wear)
-  echo -e "tmpfs /var/log tmpfs defaults 0 0\n" >> ./rootfs/etc/fstab
+  mkdir ./rootfs/mnt/external
+  cp files/fstab rootfs/etc/
+  chown root:root rootfs/etc/fstab
+  chmod 644 rootfs/etc/fstab
   
   echo "Configuration done."
 }

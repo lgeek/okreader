@@ -1,0 +1,15 @@
+# Data on the internal SD
+/dev/mmcblk0p3 /mnt/onboard    vfat  noatime  0 1
+
+# Data on the external SD
+/dev/mmcblk1p3 /mnt/external   vfat  noatime  0 1
+
+# Prevent documentation from being installed to persistent storage
+tmpfs          /usr/share/man  tmpfs defaults 0 0
+tmpfs          /usr/share/info tmpfs defaults 0 0
+tmpfs          /usr/share/doc  tmpfs defaults 0 0
+
+# Don't store logs (to save space & reduce flash wear)
+tmpfs          /var/log        tmpfs defaults 0 0
+
+tmpfs          /tmp            tmpfs defaults 0 0
