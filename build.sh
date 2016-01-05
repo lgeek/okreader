@@ -86,6 +86,7 @@ compile_linux_modules() {
   make -j$(($(nproc)+1)) modules
   cd ../../
 
+  patch -N -p1 < src/linux_backports.patch
   cd src/backports-3.14.22-1
   KLIB_BUILD=../linux/ make defconfig-brcmfmac
   KLIB_BUILD=../linux/ make -j$(($(nproc)+1))
