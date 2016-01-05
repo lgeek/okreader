@@ -61,7 +61,7 @@ parse_args() {
 
 config_rootfs() {
   echo
-  echo "Configuring the newly build rootfs..."
+  echo "Configuring the newly built rootfs..."
   
   echo "okreader" > ./rootfs/etc/hostname
   echo -e "127.0.0.1 localhost okreader\n" > ./rootfs/etc/hosts
@@ -71,7 +71,7 @@ config_rootfs() {
   mv ./rootfs/etc/inittab ./rootfs/etc/inittab.default
   sed -r 's/^[0-9]+:[0-9]+:respawn/# &/' ./rootfs/etc/inittab.default > rootfs/etc/inittab
   echo -e "\nT0:23:respawn:/sbin/getty -L ttymxc0 115200 vt100\n" >> ./rootfs/etc/inittab
-  
+
   mkdir ./rootfs/mnt/onboard
   mkdir ./rootfs/mnt/external
   cp files/fstab rootfs/etc/
