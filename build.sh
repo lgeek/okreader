@@ -116,7 +116,7 @@ compile_koreader() {
   cd src/koreader
 
   # Remove previous builds
-  rm *.tar.gz *.zip
+  rm *.targz *.tar.gz *.zip
 
   make fetchthirdparty
 
