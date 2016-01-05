@@ -81,6 +81,16 @@ config_rootfs() {
   echo "Configuration done."
 }
 
+install_packages() {
+  cp src/linux-okreader-modules_2.6.35.3-1_armhf.deb rootfs/
+  cp src/firmware-okreader_1.0-1_armhf.deb rootfs/
+  cp src/koreader_2016.01-3_armhf.deb rootfs/
+
+  chroot rootfs/ bash -c "dpkg -i /*.deb"
+
+  rm rootfs/*.deb
+}
+
 clean_up_rootfs() {
   echo "Cleaning up..."
 
@@ -109,6 +119,7 @@ build_rootfs() {
   fi
   
   config_rootfs
+  install_packages
   clean_up_rootfs
 }
 
