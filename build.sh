@@ -23,7 +23,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-available_targets=("u-boot" "linux-image" "linux-modules" "firmware-okreader" "koreader")
+available_targets=("u-boot" "linux-image" "linux-modules" "firmware-okreader" "koreader" "kobo-hwconfig")
 
 print_usage() {
   echo "Usage: build.sh [TARGET]"
@@ -145,6 +145,10 @@ compile_koreader() {
   dpkg-deb -b koreader-pkg .
 }
 
+compile_kobo_hwconfig() {
+  make pkg -C ./src/kobo_hwconfig/
+}
+
 targets=()
 parse_args $@
 
@@ -164,6 +168,9 @@ for target in ${targets[*]}; do
       ;;
     koreader)
       compile_koreader
+      ;;
+    kobo-hwconfig)
+      compile_kobo_hwconfig
       ;;
   esac
 done

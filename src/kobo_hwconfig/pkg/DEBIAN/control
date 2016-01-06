@@ -1,0 +1,5 @@
+Package: kobo-hwconfig
+Version: 1.0-1
+Maintainer: Cosmin Gorgovan <okreader@linux-geek.org>
+Architecture: armhf
+Description: Hardware platform detection for Kobo ereaders
