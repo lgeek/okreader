@@ -3,3 +3,7 @@ src/backports*
 src/*.deb
 src/firmware-okreader/lib/
 src/linux-okreader-modules/lib/
+src/koreader-pkg/opt/
+src/kobo_hwconfig/pkg/usr/
+src/kobo_hwconfig/kobo_hwconfig
+src/kobo_hwconfig/*.deb
