@@ -129,7 +129,7 @@ compile_koreader() {
   patch -R -p1 < ../koreader_base_arm.patch
 
   cd ../koreader-pkg
-  rm -R opt
+  rm -Rf opt
   mkdir opt
   cd opt
   tar xf ../../koreader/koreader-kobo-arm-linux-gnueabihf*.targz
@@ -143,6 +143,7 @@ compile_koreader() {
   
   cd ../../
   dpkg-deb -b koreader-pkg .
+  cd ../
 }
 
 compile_kobo_hwconfig() {
