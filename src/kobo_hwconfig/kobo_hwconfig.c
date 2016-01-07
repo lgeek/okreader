@@ -1,6 +1,6 @@
 /*
     Copyright (C) 2016 Cosmin Gorgovan <okreader at linux-geek dot org>
-   
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -58,12 +58,12 @@ char *pcbs[] = {
 };
 
 uint8_t pcb_to_name[] = {
-  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   UNKNOWN,  UNKNOWN, 
-  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   UNKNOWN,  UNKNOWN, 
-  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   TRILOGY,   UNKNOWN,  UNKNOWN, 
-  KRAKEN,   UNKNOWN,  UNKNOWN,  PIXIE,     DRAGON,    UNKNOWN,   UNKNOWN,  UNKNOWN, 
-  UNKNOWN,  UNKNOWN,  PHOENIX,  PHOENIX,   UNKNOWN,   KRAKEN,    UNKNOWN,  UNKNOWN, 
-  UNKNOWN,  DAHLIA,   UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   ALYSSUM,  UNKNOWN, 
+  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   UNKNOWN,  UNKNOWN,
+  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   UNKNOWN,  UNKNOWN,
+  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,   UNKNOWN,   TRILOGY,   UNKNOWN,  UNKNOWN,
+  KRAKEN,   UNKNOWN,  UNKNOWN,  PIXIE,     DRAGON,    UNKNOWN,   UNKNOWN,  UNKNOWN,
+  UNKNOWN,  UNKNOWN,  PHOENIX,  PHOENIX,   UNKNOWN,   KRAKEN,    UNKNOWN,  UNKNOWN,
+  UNKNOWN,  DAHLIA,   UNKNOWN,  UNKNOWN,   UNKNOWN,   UNKNOWN,   ALYSSUM,  UNKNOWN,
   UNKNOWN,  UNKNOWN
 };
 
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
     print_syntax();
     exit(EXIT_FAILURE);
   }
-  
+
   if (argc == 3) {
     if (strcmp(argv[2], "-id") == 0) {
       output_type = PRINT_ID;
@@ -132,30 +132,30 @@ int main(int argc, char **argv) {
       exit(EXIT_FAILURE);
     }
   }
-  
+
   file = fopen(argv[1], "rb");
   if (file == NULL) {
     fprintf(stderr, "Failed to open the input file %s\n", argv[1]);
     exit(EXIT_FAILURE);
   }
-  
+
   ret = fseek(file, HWCONFIG_OFFSET, SEEK_SET);
   if (ret != 0) {
     fprintf(stderr, "Failed to seek to position 0x%x in %s\n", HWCONFIG_OFFSET, argv[1]);
     exit(EXIT_FAILURE);
   }
-  
+
   ret = fread(&config, sizeof(config), 1, file);
   if (ret != 1) {
     fprintf(stderr, "Failed to read the HWCONFIG entry in %s\n", argv[1]);
     exit(EXIT_FAILURE);
   }
-  
+
   if (strncmp(config.magic, HWCONFIG_MAGIC, strlen(HWCONFIG_MAGIC)) != 0) {
     fprintf(stderr, "Input file %s does not appear to contain a HWCONFIG entry\n", argv[1]);
     exit(EXIT_FAILURE);
   }
-  
+
   switch (output_type) {
     case PRINT_ID:
       printf("%d\n", config.pcb_id);
