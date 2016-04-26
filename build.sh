@@ -119,14 +119,7 @@ compile_koreader() {
   rm *.targz *.tar.gz *.zip
 
   make fetchthirdparty
-
-  # Remove -m32 cflag
-  patch -p1 < ../koreader_base_arm.patch
-
   make TARGET=kobo koboupdate
-
-  # Reverse the patch so that koreader-base can be cleanly updated in the future
-  patch -R -p1 < ../koreader_base_arm.patch
 
   cd ../koreader-pkg
   rm -Rf opt
@@ -141,6 +134,8 @@ compile_koreader() {
   echo "done" >> koreader/okreader.sh
   chmod +x koreader/okreader.sh
   
+  cp ../../../files/defaults.persistent.lua koreader/
+
   cd ../../
   dpkg-deb -b koreader-pkg .
   cd ../
