@@ -130,7 +130,7 @@ compile_koreader() {
   echo "#!/bin/bash" > koreader/okreader.sh
   echo "cd /opt/koreader" >> koreader/okreader.sh
   echo "while true; do" >> koreader/okreader.sh
-  echo " ./luajit ./reader.lua /mnt/onboard" >> koreader/okreader.sh
+  echo " ./luajit ./reader.lua /mnt" >> koreader/okreader.sh
   echo "done" >> koreader/okreader.sh
   chmod +x koreader/okreader.sh
   
