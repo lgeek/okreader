@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+depmod -a
+modprobe g_file_storage file=/dev/mmcblk0p3
+
+exit 0

@@ -75,8 +75,11 @@ config_rootfs() {
   mkdir ./rootfs/mnt/onboard
   mkdir ./rootfs/mnt/external
   cp files/fstab rootfs/etc/
-  chown root:root rootfs/etc/fstab
+  cp files/rc.local rootfs/etc/
+
+  chown root:root rootfs/etc/fstab rootfs/etc/rc.local
   chmod 644 rootfs/etc/fstab
+  chmod 755 rootfs/etc/rc.local
   
   echo "Configuration done."
 }
