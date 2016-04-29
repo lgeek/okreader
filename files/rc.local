@@ -1,6 +1,11 @@
 #!/bin/sh -e
 
 depmod -a
-modprobe g_file_storage file=/dev/mmcblk0p3
+
+DATA_PART=/dev/mmcblk1p3
+if [ ! -e $DATA_PART ]; then
+  DATA_PART=/dev/mmcblk0p3
+fi
+modprobe g_file_storage file=$DATA_PART
 
 exit 0
