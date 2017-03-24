@@ -31,13 +31,15 @@ Comparison of Kobo ereaders:
 
 Device           | eReader | Wi-Fi   | Touch      | Mini       | Glo         | Aura        | Aura HD        | Aura H2O       | Glo HD       | Touch 2.0
 -----------------|---------|---------|------------|------------|-------------|-------------|----------------|----------------|--------------|------------
-okreader support | no      | no      | yes        | not tested | not tested  | yes         | kernel upg?    | kernel upg?    | no           | no
+okreader support | no      | no      | yes        | yes*       | yes*        | yes         | kernel upg?    | kernel upg?    | no           | no
 touchscreen      | no      | no      | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes
 frontlight       | no      | no      | no         | no         | yes         | yes         | yes            | yes            | yes          | no
 WiFi             | no      | yes     | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes
 screen           | 6"      | 6"      | 6" 800x600 | 5" 800x600 | 6" 1024x768 | 6" 1024x768 | 6.8" 1440×1080 | 6.8" 1440×1080 | 6" 1448x1072 | 6" 800x600
 SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo?
 is current model | no      | no      | no         | no         | no          | no          | no             | yes            | yes          | yes
+
+\* [tested by @dtamas](https://github.com/lgeek/okreader/issues/1#issuecomment-285626745)
 
 Apart from these specs, the contrast and the ghosting of the electronic ink display also tend to get better in newer models. However, even old models tend to be quite usable. I find a Kobo Touch perfectly readable in moderate to strong ambiental light and a Kobo Aura readable with the frontlight off in strong light or with the frontlight on in dark to moderately lit environments.
 
