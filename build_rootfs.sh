@@ -108,12 +108,15 @@ clean_up_rootfs() {
   rm -R ./rootfs/usr/share/doc/*
   rm -R ./rootfs/var/log/*
   
+  # Disable the NTP daemon
+  chroot rootfs/ bash -c "update-rc.d ntp disable"
+
   echo "Cleanup done."
 }
 
 build_rootfs() {
   debootstrap --arch=armhf --variant=minbase \
-  --include=net-tools,wireless-tools,wpasupplicant,kmod,udev,openssh-server,iputils-ping,ifupdown,vim-tiny,dhcpcd \
+  --include=net-tools,wireless-tools,wpasupplicant,kmod,udev,openssh-server,iputils-ping,ifupdown,vim-tiny,dhcpcd,ntp \
   wheezy ./rootfs http://http.debian.net/debian/
 
   if [ $? -ne 0 ] ; then
