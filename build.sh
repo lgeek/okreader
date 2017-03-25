@@ -126,14 +126,18 @@ compile_koreader() {
   mkdir opt
   cd opt
   tar xf ../../koreader/koreader-kobo-arm-linux-gnueabihf*.targz
-  
-  echo "#!/bin/bash" > koreader/okreader.sh
-  echo "cd /opt/koreader" >> koreader/okreader.sh
-  echo "while true; do" >> koreader/okreader.sh
-  echo " ./luajit ./reader.lua /mnt" >> koreader/okreader.sh
-  echo "done" >> koreader/okreader.sh
-  chmod +x koreader/okreader.sh
-  
+
+  cp ../../../files/okreader.sh koreader/
+  cp ../../../files/disable-wifi.sh koreader/
+  cp ../../../files/enable-wifi.sh koreader/
+  cp ../../../files/obtain-ip.sh koreader/
+  cp ../../../files/release-ip.sh koreader/
+  chmod +x koreader/disable-wifi.sh
+  chmod +x koreader/enable-wifi.sh
+  chmod +x koreader/obtain-ip.sh
+  chmod +x koreader/release-ip.sh
+  chmod +x koreader/restore-wifi-async.sh
+
   cp ../../../files/defaults.persistent.lua koreader/
 
   cd ../../
