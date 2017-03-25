@@ -8,4 +8,9 @@ if [ ! -e $DATA_PART ]; then
 fi
 modprobe g_file_storage file=$DATA_PART
 
+if [ ! -e /etc/ssh/ssh_host_rsa_key ]; then
+  # Wait a while to gather entropy
+  sleep 60 && dpkg-reconfigure openssh-server &
+fi
+
 exit 0
