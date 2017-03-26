@@ -1,3 +1,4 @@
 #!/bin/sh
 
-pkill -9 -f 'dhcpcd'
+pkill 'dhcpcd'
+ifconfig wlan0 0.0.0.0
