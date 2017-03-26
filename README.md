@@ -29,15 +29,15 @@ There seem to be multiple hardware revisions with different WiFi adapters. The *
 
 Comparison of Kobo ereaders:
 
-Device           | eReader | Wi-Fi   | Touch      | Mini       | Glo         | Aura        | Aura HD        | Aura H2O       | Glo HD       | Touch 2.0
------------------|---------|---------|------------|------------|-------------|-------------|----------------|----------------|--------------|------------
-okreader support | no      | no      | yes        | yes*       | yes*        | yes         | kernel upg?    | kernel upg?    | no           | no
-touchscreen      | no      | no      | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes
-frontlight       | no      | no      | no         | no         | yes         | yes         | yes            | yes            | yes          | no
-WiFi             | no      | yes     | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes
-screen           | 6"      | 6"      | 6" 800x600 | 5" 800x600 | 6" 1024x768 | 6" 1024x768 | 6.8" 1440×1080 | 6.8" 1440×1080 | 6" 1448x1072 | 6" 800x600
-SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo?
-is current model | no      | no      | no         | no         | no          | no          | no             | yes            | yes          | yes
+Device           | eReader | Wi-Fi   | Touch      | Mini       | Glo         | Aura        | Aura HD        | Aura H2O       | Glo HD       | Touch 2.0   | Aura One       | Aura Edition 2 |
+-----------------|---------|---------|------------|------------|-------------|-------------|----------------|----------------|--------------|-------------|----------------|----------------|
+okreader support | no      | no      | yes        | yes*       | yes*        | yes         | kernel upg?    | kernel upg?    | no           | no          | no             | no             |
+touchscreen      | no      | no      | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes         | yes            | yes            |
+frontlight       | no      | no      | no         | no         | yes         | yes         | yes            | yes            | yes          | no          | yes            | yes            |
+WiFi             | no      | yes     | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes         | yes            | yes            |
+screen           | 6"      | 6"      | 6" 800x600 | 5" 800x600 | 6" 1024x768 | 6" 1024x768 | 6.8" 1440×1080 | 6.8" 1440×1080 | 6" 1448x1072 | 6" 800x600  | 7.8" 1872x1404 | 6" 1024x768    |
+SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo? | ?              | ?              |
+is current model | no      | no      | no         | no         | no          | no          | no             | yes            | yes          | yes         | yes            | yes            |
 
 \* [tested by @dtamas](https://github.com/lgeek/okreader/issues/1#issuecomment-285626745)
 
