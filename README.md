@@ -11,19 +11,18 @@ Features yet to be implemented
 
 This project is at a very early stage. Lack of the following features could be a problem, especially for non-technical users:
 
-* No GUI for configuring or controlling WiFi. The driver works and you can add your own configuration script to the rootfs.
 * No GUI for enabling and disabling access to the data partition via USB. It is always enabled and it seems to work reliably, but data could get corrupted if both software on the ereader and another computer were to write at the same time. Maintain a backup copy of your data partition.
-* No GUI for setting the time & date.
+* No GUI for setting the time & date. The NTP option in koreader is supported, but there is no UI for setting the timezone.
 
 
 Supported hardware
 ------------------
 
-Tested on:
+I'm testing okreader on:
 * Kobo Touch
 * Kobo Aura
 
-okreader is also expected to work on other Kobo devices using the i.MX507 SoC, but some u-boot and/or kernel patches might be needed (see [this](https://github.com/kobolabs/Kobo-Reader/tree/master/hw) repository). Kobo Mini and Kobo Glo are expected to work with the current kernel, but have not been tested. Support for Glo HD and Touch 2.0 might be added at a later time. If anyone wants to test / lend or donate any of the untested or unsupported devices, please get in touch at okreader at linux-geek dot org.
+okreader is also expected to work on other Kobo devices using the i.MX507 SoC, but some additional u-boot and/or kernel patches might be needed (see [this](https://github.com/kobolabs/Kobo-Reader/tree/master/hw) repository). okreader commit #1e7825eb has been confirmed by @dtamas to also work on Kobo Mini and Kobo Glo. Support for Glo HD and Touch 2.0 might be added at a later time. If anyone wants to test / lend or donate any of the untested or unsupported devices, please get in touch at okreader at linux-geek dot org.
 
 There seem to be multiple hardware revisions with different WiFi adapters. The *firmware-okreader* package only provides the firmware for the adapters in the devices I've tested: Kobo Aura and Kobo Touch rev C (N905C).
 
@@ -39,7 +38,7 @@ screen           | 6"      | 6"      | 6" 800x600 | 5" 800x600 | 6" 1024x768 | 6
 SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo? | ?              | ?              |
 is current model | no      | no      | no         | no         | no          | no          | no             | yes            | yes          | yes         | yes            | yes            |
 
-\* [tested by @dtamas](https://github.com/lgeek/okreader/issues/1#issuecomment-285626745)
+\* [commit #1e7825eb tested by @dtamas](https://github.com/lgeek/okreader/issues/1#issuecomment-285626745)
 
 Apart from these specs, the contrast and the ghosting of the electronic ink display also tend to get better in newer models. However, even old models tend to be quite usable. I find a Kobo Touch perfectly readable in moderate to strong ambiental light and a Kobo Aura readable with the frontlight off in strong light or with the frontlight on in dark to moderately lit environments.
 
