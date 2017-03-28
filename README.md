@@ -1,7 +1,7 @@
 okreader
 ========
 
-Free/libre firmware for Kobo ebook readers. No proprietary software (except firmware), no spyware and no DRM. Based on [koreader](https://github.com/koreader/koreader) and [Debian](https://www.debian.org/).
+Free/libre software stack for Kobo ebook readers. No proprietary software (except WiFi and EPD controller firmware), no spyware and no DRM. Based on [koreader](https://github.com/koreader/koreader) and [Debian](https://www.debian.org/).
 
 WARNING: At this point, okreader has only been tested on 3(!) different devices. Only install it if you know what you're doing. You could brick your ereader and in some countries you might void your warranty.
 
