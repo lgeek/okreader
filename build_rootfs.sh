@@ -86,7 +86,7 @@ config_rootfs() {
 
 install_packages() {
   cp src/linux-okreader-modules_2.6.35.3-1_armhf.deb rootfs/
-  cp src/firmware-okreader_1.0-1_armhf.deb rootfs/
+  cp src/firmware-okreader_1.0-2_armhf.deb rootfs/
   cp src/koreader_2017.03-4_armhf.deb rootfs/
   cp src/kobo_hwconfig/kobo-hwconfig_1.0-1_armhf.deb rootfs/
 

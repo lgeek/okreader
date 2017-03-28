@@ -112,8 +112,10 @@ for target in ${targets[*]}; do
     firmware-okreader)
       mkdir -p src/firmware-okreader/lib/firmware/brcm
       fetch_and_verify https://raw.githubusercontent.com/allwinner-ics/lichee_linux-3.0/e1a12df96abab1805df4e4b46b3ef7759cca0f84/modules/wifi/bcm40181/open-src/src/dhd/linux/NVRAM.txt src/firmware-okreader/lib/firmware/brcm/brcmfmac43362-sdio.txt 4542dd0adc727f56b4870e52388b47c9ae4afb9a4bbd7b7c30de9714af1aa173
-  
+
       fetch_and_verify https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac43362-sdio.bin?id=b794c5039dcf0b7ebfeb58929d035f7a1d4c80dd src/firmware-okreader/lib/firmware/brcm/brcmfmac43362-sdio.bin 5783fd90528cc7ae421b6a6056b1572a3840eac4559b26d299d1acae17523e42
+
+      fetch_and_verify https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/LICENCE.broadcom_bcm43xx?id=b794c5039dcf0b7ebfeb58929d035f7a1d4c80dd src/firmware-okreader/lib/firmware/brcm/LICENCE.broadcom b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d
       ;;
   esac
 done
