@@ -139,6 +139,10 @@ compile_koreader() {
   chmod +x koreader/restore-wifi-async.sh
 
   cp ../../../files/defaults.persistent.lua koreader/
+  # Patch lj-wpaclient to prevent excessive scanning latency
+  sed "s/if ev.lvl == 'INFO' and ev.msg == 'CTRL-EVENT-SCAN-RESULTS'/if ev.msg == 'CTRL-EVENT-SCAN-RESULTS'/" \
+      ./koreader/common/lj-wpaclient/wpaclient.lua > ./koreader/common/lj-wpaclient/wpaclient_patched.lua
+  mv ./koreader/common/lj-wpaclient/wpaclient_patched.lua ./koreader/common/lj-wpaclient/wpaclient.lua
 
   cd ../../
   dpkg-deb -b koreader-pkg .
