@@ -22,16 +22,17 @@ I'm testing okreader on:
 * Kobo Touch
 * Kobo Mini
 * Kobo Aura
+* Kobo Glo HD
 
-okreader is also expected to work on other Kobo devices using the i.MX507 SoC, but some additional u-boot and/or kernel patches might be needed (see [this](https://github.com/kobolabs/Kobo-Reader/tree/master/hw) repository). okreader commit #1e7825eb has been confirmed by @dtamas to also work on Kobo Glo. Support for newer devices might be added at a later time. If anyone wants to test / lend or donate any of the untested or unsupported devices, please get in touch at okreader at linux-geek dot org. Also see [this thread](https://github.com/lgeek/okreader/issues/6) for a short description of the steps involved in getting okreader running on an unsupported Kobo device.
+okreader is also expected to work on other Kobo devices using the i.MX507 or i.MX6 SoCs, but some additional u-boot and/or kernel patches might be needed (see [this](https://github.com/kobolabs/Kobo-Reader/tree/master/hw) repository). okreader commit #1e7825eb has been confirmed by @dtamas to also work on Kobo Glo. Support for newer devices might be added at a later time. If anyone wants to test / lend or donate any of the untested or unsupported devices, please get in touch at okreader at linux-geek dot org. Also see [this thread](https://github.com/lgeek/okreader/issues/6) for a short description of the steps involved in getting okreader running on an unsupported Kobo device.
 
-There seem to be multiple hardware revisions with different WiFi adapters. The *firmware-okreader* package only provides the firmware for the adapters in the devices I've tested: Kobo Aura, Kobo Touch rev C (N905C) and Kobo Mini.
+There seem to be multiple hardware revisions with different WiFi adapters. The *firmware-okreader* package only provides the firmware required for the WiFi adapters in the devices I am using for testing.
 
 Comparison of Kobo ereaders:
 
 Device           | eReader | Wi-Fi   | Touch      | Mini       | Glo         | Aura        | Aura HD        | Aura H2O       | Glo HD       | Touch 2.0   | Aura One       | Aura Edition 2 |
 -----------------|---------|---------|------------|------------|-------------|-------------|----------------|----------------|--------------|-------------|----------------|----------------|
-okreader support | no      | no      | yes        | yes        | yes*        | yes         | kernel upg?    | kernel upg?    | no           | no          | no             | no             |
+okreader support | no      | no      | yes        | yes        | yes*        | yes         | kernel upg?    | kernel upg?    | yes          | no          | no             | no             |
 touchscreen      | no      | no      | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes         | yes            | yes            |
 frontlight       | no      | no      | no         | no         | yes         | yes         | yes            | yes            | yes          | no          | yes            | yes            |
 WiFi             | no      | yes     | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes         | yes            | yes            |
@@ -71,14 +72,16 @@ Note, koreader dependecies require autoconf >= 2.65. You might have to manually 
 
     AUTOCONF=autoconf2.65 ./build.sh all
 
-Build artefacts:
+Build outputs:
 
-    src/u-boot/u-boot.bin                       # U-Boot (bootloader) image
-    src/linux/arch/arm/boot/uImage              # Linux kernel image
-    src/firmware-okreader*_armhf.deb            # WiFi firmware
-    src/linux-okreader-modules_*_armhf.deb      # Linux kernel modules
-    src/koreader_*_armhf.deb                    # koreader
-    src/kobo_hwconfig/kobo-hwconfig_*_armhf.deb # GPL implementation of kobo_hwconfig
+    src/u-boot/u-boot.bin                       # U-Boot (bootloader) image (imx5-based devices)
+    src/linux/arch/arm/boot/uImage              # Linux kernel image (imx5-based devices)
+    src/linux-imx6/arch/arm/boot/uImage         # Linux kernel image (imx6-based devices)
+    src/linux-okreader-modules-imx5_*_armhf.deb # Linux kernel modules (imx5-based devices)
+    src/linux-okreader-modules-imx6_*_armhf.deb # Linux kernel modules (imx6-based devices)
+    src/firmware-okreader*_armhf.deb            # WiFi firmware (all devices)
+    src/koreader_*_armhf.deb                    # koreader (all devices)
+    src/kobo_hwconfig/kobo-hwconfig_*_armhf.deb # GPL implementation of kobo_hwconfig (all devices)
 
 Prepare a Debian rootfs (including the .deb packages previously built):
 

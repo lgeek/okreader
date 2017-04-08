@@ -1,0 +1,50 @@
+--- a/src/backports-4.2.6-1/compat/compat-3.6.c
++++ b/src/backports-4.2.6-1/compat/compat-3.6.c
+@@ -147,17 +147,3 @@
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(sg_alloc_table_from_pages);
+-
+-/* whoopsie ! */
+-#ifndef CONFIG_COMMON_CLK
+-int clk_enable(struct clk *clk)
+-{
+-	return 0;
+-}
+-EXPORT_SYMBOL_GPL(clk_enable);
+-
+-void clk_disable(struct clk *clk)
+-{
+-}
+-EXPORT_SYMBOL_GPL(clk_disable);
+-#endif
+
+--- a/src/backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmfmac/bcmsdh.c
++++ b/src/backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmfmac/bcmsdh.c
+@@ -990,6 +990,7 @@
+ {
+	sdiodev->state = BRCMF_SDIOD_DOWN;
+	if (sdiodev->bus) {
++		sdiodev->func[2]->card->host->caps = sdiodev->orig_host_caps;
+		brcmf_sdio_remove(sdiodev->bus);
+		sdiodev->bus = NULL;
+	}
+@@ -1086,6 +1087,7 @@
+		ret = -ENODEV;
+		goto out;
+	}
++	sdiodev->orig_host_caps = host->caps;
+	brcmf_sdiod_host_fixup(host);
+ out:
+	if (ret)
+
+--- a/src/backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmfmac/sdio.h
++++ b/src/backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmfmac/sdio.h
+@@ -200,6 +200,7 @@
+	bool wowl_enabled;
+	enum brcmf_sdiod_state state;
+	struct brcmf_sdiod_freezer *freezer;
++	u32 orig_host_caps;
+ };
+ 
+ /* sdio core registers */

@@ -1,0 +1,5 @@
+Package: linux-okreader-modules-imx6
+Version: 3.0.35-1
+Maintainer: Cosmin Gorgovan <okreader@linux-geek.org>
+Architecture: armhf
+Description: modules for the okreader imx6 kernel

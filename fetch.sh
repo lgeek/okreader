@@ -23,7 +23,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-available_targets=("linux-backports" "firmware-okreader")
+available_targets=("linux-backports-imx5" "linux-backports-imx6" "firmware-okreader")
 
 print_usage() {
   echo "Usage: fetch_sources.sh [TARGET]"
@@ -106,8 +106,11 @@ parse_args $@
 
 for target in ${targets[*]}; do
   case $target in
-    linux-backports)
+    linux-backports-imx5)
       fetch_and_unpack_archive "https://www.kernel.org/pub/linux/kernel/projects/backports/stable/v3.14.22/backports-3.14.22-1.tar.xz" "backports-3.14.22-1.tar.xz" "backports-3.14.22-1" "a1b6a03647624545d77559db7cc33027aa4dcd882b48247287697dc6a255e3ac"
+      ;;
+    linux-backports-imx6)
+      fetch_and_unpack_archive "https://www.kernel.org/pub/linux/kernel/projects/backports/stable/v4.2.6/backports-4.2.6-1.tar.xz" "backports-4.2.6-1.tar.xz" "backports-4.2.6-1" "0b418f9f682fc49669b774f063bb0e2444324a2df3c60e753fcb7a22d350381a"
       ;;
     firmware-okreader)
       mkdir -p src/firmware-okreader/lib/firmware/brcm

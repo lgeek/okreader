@@ -1,4 +1,4 @@
-Package: linux-okreader-modules
+Package: linux-okreader-modules-imx5
 Version: 2.6.35.3-1
 Maintainer: Cosmin Gorgovan <okreader@linux-geek.org>
 Architecture: armhf

@@ -2,7 +2,8 @@ rootfs
 src/backports*
 src/*.deb
 src/firmware-okreader/lib/
-src/linux-okreader-modules/lib/
+src/linux-okreader-modules-imx5/lib/
+src/linux-okreader-modules-imx6/lib/
 src/koreader-pkg/opt/
 src/kobo_hwconfig/pkg/usr/
 src/kobo_hwconfig/kobo_hwconfig

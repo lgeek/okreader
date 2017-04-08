@@ -23,7 +23,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-available_targets=("u-boot" "linux-image" "linux-modules" "firmware-okreader" "koreader" "kobo-hwconfig")
+available_targets=("u-boot" "linux-image-imx5" "linux-modules-imx5" "linux-image-imx6" "linux-modules-imx6" "firmware-okreader" "koreader" "kobo-hwconfig")
 
 print_usage() {
   echo "Usage: build.sh [TARGET]"
@@ -74,14 +74,24 @@ compile_uboot() {
   cd ../../
 }
 
-compile_linux_image() {
+compile_linux_image_imx5() {
+  export ARCH=arm
   cd src/linux
   make mx50_kobo_defconfig
   make -j$(($(nproc)+1)) uImage
   cd ../../
 }
 
-compile_linux_modules() {
+compile_linux_image_imx6() {
+  export ARCH=arm
+  cd src/linux-imx6
+  make imx6s_ntx_alyssum_okreader_defconfig
+  make -j$(($(nproc)+1)) uImage
+  cd ../../
+}
+
+compile_linux_modules_imx5() {
+  export ARCH=arm
   cd src/linux
   make -j$(($(nproc)+1)) modules
   cd ../../
@@ -92,17 +102,42 @@ compile_linux_modules() {
   KLIB_BUILD=../linux/ make -j$(($(nproc)+1))
   cd ../
   
-  mkdir -p linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp backports-3.14.22-1/drivers/net/wireless/brcm80211/brcmfmac/brcmfmac.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp backports-3.14.22-1/drivers/net/wireless/brcm80211/brcmutil/brcmutil.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp backports-3.14.22-1/net/wireless/cfg80211.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp backports-3.14.22-1/compat/compat.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
+  mkdir -p linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp backports-3.14.22-1/drivers/net/wireless/brcm80211/brcmfmac/brcmfmac.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp backports-3.14.22-1/drivers/net/wireless/brcm80211/brcmutil/brcmutil.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp backports-3.14.22-1/net/wireless/cfg80211.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp backports-3.14.22-1/compat/compat.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
 
-  cp linux/drivers/usb/gadget/g_file_storage.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp linux/drivers/mmc/card/sdio_wifi_pwr.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
-  cp linux/drivers/usb/gadget/arcotg_udc.ko linux-okreader-modules/lib/modules/2.6.35.3-850-gbc67621+/
+  cp linux/drivers/usb/gadget/g_file_storage.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp linux/drivers/mmc/card/sdio_wifi_pwr.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
+  cp linux/drivers/usb/gadget/arcotg_udc.ko linux-okreader-modules-imx5/lib/modules/2.6.35.3-850-gbc67621+/
   
-  dpkg-deb -b linux-okreader-modules .
+  dpkg-deb -b linux-okreader-modules-imx5 .
+  cd ..
+}
+
+compile_linux_modules_imx6() {
+  export ARCH=arm
+  cd src/linux-imx6
+  make -j$(($(nproc)+1)) modules
+  cd ../../
+
+  patch -N -p1 < src/linux_backports_imx6.patch
+  cd src/backports-4.2.6-1
+  KLIB_BUILD=../linux-imx6/ make defconfig-brcmfmac
+  KLIB_BUILD=../linux-imx6/ make -j$(($(nproc)+1))
+  cd ../
+
+  mkdir -p linux-okreader-modules-imx6/lib/modules/3.0.35/
+  cp backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmfmac/brcmfmac.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+  cp backports-4.2.6-1/drivers/net/wireless/brcm80211/brcmutil/brcmutil.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+  cp backports-4.2.6-1/net/wireless/cfg80211.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+  cp backports-4.2.6-1/compat/compat.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+
+  cp linux-imx6/drivers/usb/gadget/g_file_storage.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+  cp linux-imx6/drivers/mmc/card/sdio_wifi_pwr.ko linux-okreader-modules-imx6/lib/modules/3.0.35/
+
+  dpkg-deb -b linux-okreader-modules-imx6 .
   cd ..
 }
 
@@ -161,11 +196,17 @@ for target in ${targets[*]}; do
     u-boot)
       compile_uboot
       ;;
-    linux-image)
-      compile_linux_image
+    linux-image-imx5)
+      compile_linux_image_imx5
       ;;
-    linux-modules)
-      compile_linux_modules
+    linux-modules-imx5)
+      compile_linux_modules_imx5
+      ;;
+    linux-image-imx6)
+      compile_linux_image_imx6
+      ;;
+    linux-modules-imx6)
+      compile_linux_modules_imx6
       ;;
     firmware-okreader)
       compile_firmware_okreader
