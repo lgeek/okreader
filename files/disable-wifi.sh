@@ -3,7 +3,6 @@
 # Disable wifi, and remove all modules.
 
 pkill dhcpcd
-pkill wpa_supplicant
 
 ifconfig wlan0 down
 
