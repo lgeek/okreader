@@ -36,7 +36,7 @@ touchscreen      | no      | no      | yes        | yes        | yes         | y
 frontlight       | no      | no      | no         | no         | yes         | yes         | yes            | yes            | yes          | no          | yes            | yes            |
 WiFi             | no      | yes     | yes        | yes        | yes         | yes         | yes            | yes            | yes          | yes         | yes            | yes            |
 screen           | 6"      | 6"      | 6" 800x600 | 5" 800x600 | 6" 1024x768 | 6" 1024x768 | 6.8" 1440×1080 | 6.8" 1440×1080 | 6" 1448x1072 | 6" 800x600  | 7.8" 1872x1404 | 6" 1024x768    |
-SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo? | ?              | ?              |
+SoC              | i.MX357 | i.MX357 | i.MX507    | i.MX507    | i.MX507     | i.MX507     | i.MX507        | i.MX507        | i.MX6 Solo   | i.MX6 Solo? | ?              | i.MX6 Solo Lite|
 is current model | no      | no      | no         | no         | no          | no          | no             | yes            | yes          | yes         | yes            | yes            |
 
 \* [commit #1e7825eb tested by @dtamas](https://github.com/lgeek/okreader/issues/1#issuecomment-285626745)
