@@ -136,7 +136,49 @@ sync
 
 Booting from the external microSD card
 --------------------------------------
-TODO
+
+* Insert the external microSD card in the ereader and boot it up.
+
+* Get a shell on the device, either via Telnet, SSH or some sort of terminal emulator.
+
+* On the ereader shell, mount the rootfs as read only and clone the internal memory into the external microSD card:
+
+```
+umount /mnt/onboard
+mount -o remount,ro /
+dd if=/dev/mmcblk0 of=/dev/mmcblk1
+```
+
+* Remount the filesystems with their default options:
+
+```
+mount -o remount,rw /
+mount -t vfat -o noatime,nodiratime,shortname=mixed,utf8 /dev/mmcblk0p3 /mnt/onboard
+```
+
+* Remove the microSD card from the ereader and insert it into a computer with a microSD card reader.
+
+* Extract the hardware configuration block from the microSD card. For example, on a GNU/Linux computer, assuming the SD card is at /dev/mmcblk0 (replace as needed):
+
+```
+dd bs=512 skip=1024 count=1 if=/dev/mmcblk0 of=ereader.hwconfig
+```
+
+* Use a hex editor to change the byte at offset 0x3F (63) from 0 to 1:
+
+```
+printf '\x01' | dd of=ereader.hwconfig bs=1 seek=63 count=1 conv=notrunc
+```
+
+* Write it back to the microSD card
+
+```
+dd if=ereader.hwconfig bs=512 seek=1024 of=/dev/mmcblk0
+```
+
+* Proceed with the installation as documented in **Installation on the internal microSD**.
+
+* Hold down the power and backlight buttons while booting until the LED is blinking to boot from the external microSD card.
 
 
 Notes for developers
