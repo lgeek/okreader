@@ -119,7 +119,7 @@ sudo dd if=src/linux/arch/arm/boot/uImage of=/dev/mmcblk0 bs=1024 seek=1024
 * Format the system partition:
 
 ```
-sudo mkfs.ext4 /dev/mmcblk0p1
+sudo mkfs.ext4 -O^metadata_csum /dev/mmcblk0p1
 ```
 
 * Copy okreader's rootfs to the SD card:
